@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+//using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class Move : MonoBehaviour
 {
-   
-    // Start is called before the first frame update
+    public float xForce = 5.0f;
+    public float zForce = 5.0f;
+    public float yForce = 10.0f;
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         
@@ -14,6 +17,27 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // type the code here
+        float x = 0.0f, y = 0.0f, z = 0.0f;
+        if (Input.GetKey(KeyCode.A))
+        {
+            x = x - xForce;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            x = x + xForce;
+        }
+        if (Input.GetKey(KeyCode.W))
+        {
+            z = z + zForce;
+        }
+        if (Input.GetKey(KeyCode.X))
+        {
+            z = z - zForce;
+        }
+        if (Input.GetKey(KeyCode.Space))
+        {
+            y = yForce;
+        }
+        GetComponent<Rigidbody>().AddForce(x, y, z);
     }
 }
